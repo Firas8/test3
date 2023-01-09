@@ -27,8 +27,8 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '14.x'
-      - name: Run Jest
-        uses: stefanoeb/jest-action@1.0.3
+      #- name: Run Jest
+      #  uses: stefanoeb/jest-action@1.0.3
       - name: Run tests
         run: npm run test
 
