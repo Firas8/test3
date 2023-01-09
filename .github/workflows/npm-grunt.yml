@@ -1,4 +1,4 @@
-name: Project Delivery
+name: Project Delivery CI/CI
 
 on:
   push:
