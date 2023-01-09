@@ -3,8 +3,6 @@ name: Project Delivery CI/CI
 on:
   push:
     branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
 
 jobs:
   Build:
@@ -59,7 +57,7 @@ jobs:
     name: 🧰 Release
     runs-on: ubuntu-latest
     environment: DEV
-    #needs: [ Test, SecurityScan, SonarQube ]
+    needs: [ Test, SecurityScan, SonarQube ]
     steps:
       - name: Checkout Project
         uses: actions/checkout@v2
