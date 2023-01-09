@@ -11,7 +11,7 @@ jobs:
     name: 📦 Build project
     runs-on: ubuntu-latest
     steps:
-      - name: Use Node.js
+      - name: Install Node.js
         uses: actions/checkout@v3
       - name: Install NPM dependencies
         run: npm install
@@ -25,8 +25,8 @@ jobs:
     runs-on: ubuntu-latest
     needs: [ Build ]
     steps:
-      - name: Use Node.js
-        uses: actions/setup-node@v3
+      #- name: Use Node.js
+      #  uses: actions/setup-node@v3
       #  with:
       #    node-version: '14.x'
       #- name: Run Jest
@@ -39,9 +39,9 @@ jobs:
     runs-on: ubuntu-latest
     needs: [ Build ]
     steps:
-      - name: Checkout the code
+      - name: Checkout Project
         uses: actions/checkout@v2
-      - name: nodejsscan scan
+      - name: Scan project with NodeJsScan
         id: njsscan
         uses: ajinabraham/njsscan-action@master
         with:
@@ -52,8 +52,8 @@ jobs:
     runs-on: ubuntu-latest
     needs: [ Build ]
     steps:
-      - name: Use Node.js
-        uses: actions/checkout@v3
+      #- name: Chekout Project
+      #  uses: actions/checkout@v3
 
   Release:
     name: 🧰 Release
@@ -61,7 +61,7 @@ jobs:
     environment: DEV
     #needs: [ Test, SecurityScan, SonarQube ]
     steps:
-      - name: Checkout TEST
+      - name: Checkout Project
         uses: actions/checkout@v2
         with:
           token: ${{ env.PAT }}
@@ -69,33 +69,39 @@ jobs:
         env:
           PAT: ${{ secrets.CI_PAT }}
 
-      - name: Use Node.js
+      - name: Install Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '12.x'
 
-      - run: git config --global user.email $USER_EMAIL
+      - name: Git Setting
+        run: |
+            git config --global user.email $USER_EMAIL
+            git config --global user.name $USERNAME
         env:
           USER_EMAIL: ${{ secrets.CI_USER_EMAIL }}
-
-      - run: git config --global user.name $USERNAME
-        env:
           USERNAME: ${{ secrets.CI_USERNAME }}
 
-      - run: echo "CURRENT_VERSION=$(grep version package.json | awk -F \" '{print $4}')" >> $GITHUB_ENV
+      - name: Get current version
+        run: echo "CURRENT_VERSION=$(grep version package.json | awk -F \" '{print $4}')" >> $GITHUB_ENV
 
-      - uses: rickstaa/action-create-tag@v1
+      - name: Create new Tag for the new release in master branch
+        uses: rickstaa/action-create-tag@v1
         with:
           token: ${{ env.PAT }}
           tag: ${{ env.CURRENT_VERSION }}
 
-      - run: git checkout dev
-      - run: git pull
+      - name: Switch to dev branch
+      - run: |
+          git checkout dev
+          git pull
 
-      - run: npm version minor --git-tag-version false
+      - name: Update project version
+        run: npm version minor --git-tag-version false
 
+      - name: Commit modification
       - run: git add .
-      - run: git commit -m "Release "CURRENT_VERSION
+      - run: git commit -m "Release " $CURRENT_VERSION
       - run: git push
 
   Deploy:
@@ -103,5 +109,5 @@ jobs:
     runs-on: ubuntu-latest
     needs: [ Release ]
     steps:
-      - name: Use Node.js
+      - name: Checkout Project
         uses: actions/checkout@v3
