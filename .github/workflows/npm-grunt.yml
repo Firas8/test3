@@ -92,7 +92,7 @@ jobs:
           tag: ${{ env.CURRENT_VERSION }}
 
       - name: Switch to dev branch
-      - run: |
+        run: |
           git checkout dev
           git pull
 
