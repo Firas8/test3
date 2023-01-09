@@ -104,7 +104,7 @@ jobs:
       - name: Commit modification
         run: |
           git add .
-          git commit -m "Release " $CURRENT_VERSION
+          git commit -m "Release "$CURRENT_VERSION
           git push
 
   Deploy:
