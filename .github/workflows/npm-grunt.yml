@@ -6,10 +6,6 @@ on:
   pull_request:
     branches: [ "main" ]
 
-env:
-  CI_LOGIN: "firas8"
-  CI_EMAIL: "firas.gabsi@gmail.com"
-
 jobs:
   Build:
     name: 📦 Build project
@@ -63,6 +59,7 @@ jobs:
     name: 🧰 Release
     runs-on: ubuntu-latest
     environment: DEV
+    #needs: [ Test, SecurityScan, SonarQube ]
     steps:
       - name: Checkout TEST
         uses: actions/checkout@v2
@@ -80,15 +77,16 @@ jobs:
       - run: git config --global user.email $USER_EMAIL
         env:
           USER_EMAIL: ${{ secrets.CI_USER_EMAIL }}
+
       - run: git config --global user.name $USERNAME
         env:
           USERNAME: ${{ secrets.CI_USERNAME }}
 
       - run: echo "CURRENT_VERSION=$(grep version package.json | awk -F \" '{print $4}')" >> $GITHUB_ENV
 
-      - uses: actions/checkout@v3
       - uses: rickstaa/action-create-tag@v1
         with:
+          token: ${{ env.PAT }}
           tag: ${{ env.CURRENT_VERSION }}
 
       - run: git checkout dev
