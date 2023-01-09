@@ -76,8 +76,8 @@ jobs:
 
       - name: Git Setting
         run: |
-            git config --global user.email $USER_EMAIL
-            git config --global user.name $USERNAME
+          git config --global user.email $USER_EMAIL
+          git config --global user.name $USERNAME
         env:
           USER_EMAIL: ${{ secrets.CI_USER_EMAIL }}
           USERNAME: ${{ secrets.CI_USERNAME }}
@@ -100,9 +100,10 @@ jobs:
         run: npm version minor --git-tag-version false
 
       - name: Commit modification
-      - run: git add .
-      - run: git commit -m "Release " $CURRENT_VERSION
-      - run: git push
+        run: |
+          git add .
+          git commit -m "Release " $CURRENT_VERSION
+          git push
 
   Deploy:
     name: 🚀 Deploy
