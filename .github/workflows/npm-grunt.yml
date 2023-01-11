@@ -10,14 +10,20 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
+
       - name: get version
         id: version
         uses: notiz-dev/github-action-json-property@release
         with:
           path: 'package2.json'
           prop_path: 'version'
-          date_path: 'date'
-      - run: echo ${{steps.version.outputs.prop}}
+
+      - name: get date
+        id: date
+        uses: notiz-dev/github-action-json-property@release
+        with:
+          path: 'package2.json'
+          prop_path: 'date'
       - run: echo ${{steps.date.outputs.prop}}
 
       #echo $(date +'%m/%d/%Y')
