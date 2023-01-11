@@ -25,6 +25,8 @@ jobs:
       - run: echo "CURRENT_DATE=$(grep date package2.json | awk -F \" '{print $4}')" >> $GITHUB_ENV
       - run: echo ${{ env.CURRENT_VERSION }}
       - run: echo ${{ env.CURRENT_DATE }}
-      - run: $((env.CURRENT_VERSION+1))
+      - run: echo "NEXT_VERSION=$(grep version package2.json | awk -F \" '{print $4}')" >> $GITHUB_ENV
+      - run: echo ${{NEXT_VERSION}} | grep -o -E '[0-9]+' | head -1 | sed -e 's/^0\+//'
+      - run: $((env.NEXT_VERSION+1))
 
       #echo $(date +'%m/%d/%Y')
