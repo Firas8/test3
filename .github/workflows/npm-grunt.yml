@@ -32,5 +32,6 @@ jobs:
           NUM: ${{ github.run_number }}
         run: |
           echo ::set-env name=GITHUB_RUN_NUMBER_WITH_OFFSET::$((NEXT_VERSION+1))
+          echo $GITHUB_RUN_NUMBER_WITH_OFFSET
 
       #echo $(date +'%m/%d/%Y')
