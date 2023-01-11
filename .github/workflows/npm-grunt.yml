@@ -25,4 +25,16 @@ jobs:
           echo ::set-env name=NEXT_VERSION=::$((TEMP+1))
       - run: echo $NEXT_VERSION'.0.0'
 
+      - name: Find and Replace
+        uses: jacobtomlinson/gha-find-replace@v2
+        with:
+          find: ${{ env.CURRENT_VERSION }}
+          replace: $NEXT_VERSION.0.0
+          include: "package2.json"
+          regex: false
+
+      - run: git add .
+      - run: git commit -m "Release "$NEXT_VERSION".0.0"
+      - run: git push
+
       - run: echo $(date +'%m/%d/%Y')
