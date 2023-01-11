@@ -2,7 +2,7 @@ name: Merge Request Check
 
 on:
   pull_request:
-    branches: [ "main", "dev" ]
+    branches: [ "dev" ]
 
 jobs:
   Build:
