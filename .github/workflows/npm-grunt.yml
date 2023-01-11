@@ -28,6 +28,7 @@ jobs:
       - run: echo "NEXT_VERSION=$(echo ${{env.CURRENT_VERSION}} | grep -o -E '[0-9]+' | head -1 | sed -e 's/^0\+//')" >> $GITHUB_ENV
       - name: run number with offset
         env:
+          ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
           NUM: ${{ github.run_number }}
         run: |
           echo ::set-env name=GITHUB_RUN_NUMBER_WITH_OFFSET::$((NEXT_VERSION+1))
