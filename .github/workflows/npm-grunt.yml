@@ -26,8 +26,10 @@ jobs:
       - run: echo ${{ env.CURRENT_VERSION }}
       - run: echo ${{ env.CURRENT_DATE }}
       - run: echo "NEXT_VERSION=$(echo ${{env.CURRENT_VERSION}} | grep -o -E '[0-9]+' | head -1 | sed -e 's/^0\+//')" >> $GITHUB_ENV
-      - run: |
-          echo ::set-env name=GITHUB_RUN_NUMBER_WITH_OFFSET::$((NEXT_VERSION+200))
-      - run: echo $GITHUB_RUN_NUMBER_WITH_OFFSET
+      - name: run number with offset
+        env:
+          NUM: ${{ github.run_number }}
+        run: |
+          echo ::set-env name=GITHUB_RUN_NUMBER_WITH_OFFSET::$((NEXT_VERSION+1))
 
       #echo $(date +'%m/%d/%Y')
