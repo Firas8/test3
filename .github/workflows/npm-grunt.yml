@@ -18,6 +18,9 @@ jobs:
           path: 'package2.json'
           prop_path: 'version'
 
+      - run: echo ${{steps.version.outputs.prop}}
+      - run: echo ${{steps.version.outputs.prop}} | grep -o -E '[0-9]+' | head -1 | sed -e 's/^0\+//'
+
       - name: get date
         id: date
         uses: notiz-dev/github-action-json-property@release
@@ -26,4 +29,5 @@ jobs:
           prop_path: 'date'
       - run: echo ${{steps.date.outputs.prop}}
 
+      - run: echo ${{steps.date.outputs.prop}}
       #echo $(date +'%m/%d/%Y')
