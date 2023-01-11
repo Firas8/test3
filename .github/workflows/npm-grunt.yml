@@ -11,26 +11,20 @@ jobs:
     steps:
       - uses: actions/checkout@master
 
-      - name: get version
-        id: version
-        uses: notiz-dev/github-action-json-property@release
-        with:
-          path: 'package2.json'
-          prop_path: 'version'
+      #- name: get version
+      #  id: version
+      #  uses: notiz-dev/github-action-json-property@release
+      #  with:
+      #    path: 'package2.json'
+      #    prop_path: 'version'
 
-      - run: echo ${{steps.version.outputs.prop}}
-      - run: echo ${{steps.version.outputs.prop}} | grep -o -E '[0-9]+' | head -1 | sed -e 's/^0\+//'
-      - run: echo "CURRENT_VERSION=$(${{steps.version.outputs.prop}} | grep -o -E '[0-9]+' | head -1 | sed -e 's/^0\+//')" >> $GITHUB_ENV
+      #- run: echo ${{steps.version.outputs.prop}}
+      #- run: echo ${{steps.version.outputs.prop}} | grep -o -E '[0-9]+' | head -1 | sed -e 's/^0\+//'
+
+      - run: echo "CURRENT_VERSION=$(grep version package2.json | awk -F \" '{print $4}')" >> $GITHUB_ENV
+      - run: echo "CURRENT_DATE=$(grep date package2.json | awk -F \" '{print $4}')" >> $GITHUB_ENV
       - run: echo ${{ env.CURRENT_VERSION }}
+      - run: echo ${{ env.CURRENT_DATE }}
       - run: $((env.CURRENT_VERSION+1))
 
-      - name: get date
-        id: date
-        uses: notiz-dev/github-action-json-property@release
-        with:
-          path: 'package2.json'
-          prop_path: 'date'
-      - run: echo ${{steps.date.outputs.prop}}
-
-      - run: echo ${{steps.date.outputs.prop}}
       #echo $(date +'%m/%d/%Y')
