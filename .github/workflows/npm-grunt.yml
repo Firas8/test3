@@ -11,26 +11,18 @@ jobs:
     steps:
       - uses: actions/checkout@master
 
-      #- name: get version
-      #  id: version
-      #  uses: notiz-dev/github-action-json-property@release
-      #  with:
-      #    path: 'package2.json'
-      #    prop_path: 'version'
-
-      #- run: echo ${{steps.version.outputs.prop}}
-      #- run: echo ${{steps.version.outputs.prop}} | grep -o -E '[0-9]+' | head -1 | sed -e 's/^0\+//'
-
       - run: echo "CURRENT_VERSION=$(grep version package2.json | awk -F \" '{print $4}')" >> $GITHUB_ENV
-      - run: echo "CURRENT_DATE=$(grep date package2.json | awk -F \" '{print $4}')" >> $GITHUB_ENV
       - run: echo ${{ env.CURRENT_VERSION }}
+
+      - run: echo "CURRENT_DATE=$(grep date package2.json | awk -F \" '{print $4}')" >> $GITHUB_ENV
       - run: echo ${{ env.CURRENT_DATE }}
+
       - run: echo "TEMP=$(echo ${{env.CURRENT_VERSION}} | grep -o -E '[0-9]+' | head -1 | sed -e 's/^0\+//')" >> $GITHUB_ENV
       - name: run number with offset
         env:
           ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
         run: |
           echo ::set-env name=NEXT_VERSION=::$((TEMP+1))
-      - run: echo $NEXT_VERSION
+      - run: echo $NEXT_VERSION'.0.0'
 
-      #echo $(date +'%m/%d/%Y')
+      - run: echo $(date +'%m/%d/%Y')
