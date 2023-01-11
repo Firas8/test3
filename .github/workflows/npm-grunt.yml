@@ -8,6 +8,8 @@ jobs:
   Test:
     name: 🐛 Release
     runs-on: ubuntu-latest
+    env:
+      NEXT_VERSION: 0.0.0
     steps:
       - uses: actions/checkout@master
 
@@ -30,8 +32,8 @@ jobs:
         env:
           ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
         run: |
-          echo ::set-env name=NEXT_VERSION=::$((TEMP+1))
+          echo NEXT_VERSION=::$((TEMP+1))
           echo NEXT_VERSION
-      - run: echo ${{ NEXT_VERSION }}
+      - run: NEXT_VERSION
 
       #echo $(date +'%m/%d/%Y')
