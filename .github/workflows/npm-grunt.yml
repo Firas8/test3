@@ -38,7 +38,7 @@ jobs:
         env:
           ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
         run: |
-          echo ::set-env name=NEXT_VERSION=::$((TEMP+1))'.0.0' 
+          echo ::set-env name=NEXT_VERSION::$((TEMP+1))'.0.0' 
 
       - run: echo "NEXT_VERSION2=$(echo $NEXT_VERSION)" >> $GITHUB_ENV
 
@@ -47,7 +47,7 @@ jobs:
         env:
           ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
         run: |
-          echo ::set-env name=CURRENT_DATE=::$(date +'%m/%d/%Y')
+          echo ::set-env name=CURRENT_DATE::$(date +'%m/%d/%Y')
 
       - run: echo "CURRENT_DATE2=$(echo $CURRENT_DATE)" >> $GITHUB_ENV
 
