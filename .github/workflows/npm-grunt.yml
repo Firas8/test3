@@ -40,7 +40,7 @@ jobs:
         run: |
           echo ::set-env name=NEXT_VERSION=::$((TEMP+1))'.0.0' 
 
-      - run: echo "$NEXT_VERSION2=$(echo $NEXT_VERSION)" >> $GITHUB_ENV
+      - run: echo "NEXT_VERSION2=$(echo $NEXT_VERSION)" >> $GITHUB_ENV
 
 
       - name: run number with offset
