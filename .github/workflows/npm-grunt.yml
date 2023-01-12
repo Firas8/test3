@@ -6,11 +6,9 @@ on:
 
 jobs:
   Test:
-
     name: 🧰 Release
     runs-on: ubuntu-latest
     environment: DEV
-    needs: [ Test, SecurityScan, SonarQube ]
     steps:
       - name: Checkout Project
         uses: actions/checkout@v2
