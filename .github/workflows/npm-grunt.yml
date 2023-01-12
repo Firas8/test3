@@ -47,21 +47,21 @@ jobs:
 
       - run: echo $NEXT_VERSION'.0.0'
 
-      - name: Find and Replace
-        uses: jacobtomlinson/gha-find-replace@v2
-        with:
-          find: ${{ env.CURRENT_VERSION }}
-          replace: $NEXT_VERSION'.0.0'
-          include: "package2.json"
-          regex: false
+        #- name: Find and Replace
+        #uses: jacobtomlinson/gha-find-replace@v2
+          #with:
+          #find: ${{ env.CURRENT_VERSION }}
+          #replace: $NEXT_VERSION'.0.0'
+          #include: "package2.json"
+        #regex: false
 
       - name: Find and Replace
         uses: jacobtomlinson/gha-find-replace@v2
         with:
           find: ${{ env.CURRENT_VERSION }}
-          replace: ${{ env.NEXT_VERSION }}
+          replace: ${{ env.NEXT_VERSION }}'.0.0'
           regex: false
-          include: 'pom.xml'
+          include: "package2.json"
 
 
       - run: git add .
