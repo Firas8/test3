@@ -46,7 +46,7 @@ jobs:
           echo ::set-env name=NEXT_VERSION=::$((TEMP+1))
 
       - run: echo $NEXT_VERSION'.0.0'
-      - run: echo "$NEXT_VERSION2=$(echo $NEXT_VERSION'.0.0')" >> $GITHUB_ENV
+      - run: echo "$NEXT_VERSION2=$(echo ${{ env.NEXT_VERSION }}'.0.0')" >> $GITHUB_ENV
 
         #- name: Find and Replace
         #uses: jacobtomlinson/gha-find-replace@v2
@@ -73,7 +73,7 @@ jobs:
           include: "package2.json"
 
       - run: git add .
-      - run: git commit -m "Release "$NEXT_VERSION".0.0"
+      - run: git commit -m "Release "$NEXT_VERSION2
       - run: git push
 
       - run: echo
