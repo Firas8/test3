@@ -51,7 +51,7 @@ jobs:
         uses: jacobtomlinson/gha-find-replace@v2
         with:
           find: ${{ env.CURRENT_VERSION }}
-          replace: $NEXT_VERSION.0.0
+          replace: $NEXT_VERSION'.0.0'
           include: "package2.json"
           regex: false
 
