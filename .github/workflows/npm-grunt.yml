@@ -18,11 +18,6 @@ jobs:
         env:
           PAT: ${{ secrets.CI_PAT }}
 
-      - name: Install Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '12.x'
-
       - name: Git Setting
         run: |
           git config --global user.email $USER_EMAIL
@@ -45,7 +40,7 @@ jobs:
         run: |
           echo ::set-env name=NEXT_VERSION=::$((TEMP+1))'.0.0'
 
-      - run: echo $NEXT_VERSION'
+      - run: echo $NEXT_VERSION
 
         #- name: Find and Replace
         #uses: jacobtomlinson/gha-find-replace@v2
