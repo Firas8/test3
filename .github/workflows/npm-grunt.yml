@@ -43,9 +43,9 @@ jobs:
         env:
           ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
         run: |
-          echo ::set-env name=NEXT_VERSION=::$((TEMP+1))'.0.0'
+          echo ::set-env name=NEXT_VERSION=::$((TEMP+1))
 
-      - run: echo $NEXT_VERSION
+      - run: echo $NEXT_VERSION'.0.0'
 
       - name: Find and Replace
         uses: jacobtomlinson/gha-find-replace@v2
