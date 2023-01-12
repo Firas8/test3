@@ -63,7 +63,7 @@ jobs:
         uses: jacobtomlinson/gha-find-replace@v2
         with:
           find: ${{ env.CURRENT_VERSION }}
-          replace: ${{ env.$NEXT_VERSION2 }}
+          replace: ${{ env.NEXT_VERSION2 }}
           regex: false
           include: "package2.json"
 
