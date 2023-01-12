@@ -29,8 +29,8 @@ jobs:
       - run: echo "CURRENT_VERSION=$(grep version package2.json | awk -F \" '{print $4}')" >> $GITHUB_ENV
       - run: echo ${{ env.CURRENT_VERSION }}
 
-      - run: echo "CURRENT_DATE=$(grep date package2.json | awk -F \" '{print $4}')" >> $GITHUB_ENV
-      - run: echo ${{ env.CURRENT_DATE }}
+      - run: echo "OLD_DATE=$(grep date package2.json | awk -F \" '{print $4}')" >> $GITHUB_ENV
+      - run: echo ${{ env.OLD_DATE }}
 
       - run: echo "TEMP=$(echo ${{env.CURRENT_VERSION}} | grep -o -E '[0-9]+' | head -1 | sed -e 's/^0\+//')" >> $GITHUB_ENV
 
@@ -38,9 +38,18 @@ jobs:
         env:
           ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
         run: |
-          echo ::set-env name=NEXT_VERSION=::$((TEMP+1))'.0.0'
+          echo ::set-env name=NEXT_VERSION=::$((TEMP+1))'.0.0' 
 
-      - run: echo $NEXT_VERSION
+      - run: echo "$NEXT_VERSION2=$(echo $NEXT_VERSION)" >> $GITHUB_ENV
+
+
+      - name: run number with offset
+        env:
+          ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
+        run: |
+          echo ::set-env name=CURRENT_DATE=::$(date +'%m/%d/%Y')'  
+
+      - run: echo "CURRENT_DATE2=$(echo CURRENT_DATE)" >> $GITHUB_ENV
 
         #- name: Find and Replace
         #uses: jacobtomlinson/gha-find-replace@v2
@@ -54,15 +63,15 @@ jobs:
         uses: jacobtomlinson/gha-find-replace@v2
         with:
           find: ${{ env.CURRENT_VERSION }}
-          replace: $NEXT_VERSION
+          replace: ${{ env.$NEXT_VERSION2 }}
           regex: false
           include: "package2.json"
 
       - name: Find and Replace Date
         uses: jacobtomlinson/gha-find-replace@v2
         with:
-          find: ${{ env.CURRENT_DATE }}
-          replace: $(date +'%m/%d/%Y')
+          find: ${{ env.OLD_DATE }}
+          replace: ${{ env.CURRENT_DATE2 }}
           regex: false
           include: "package2.json"
 

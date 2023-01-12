@@ -1,4 +1,4 @@
 {
-  "version": "$NEXT_VERSION",
-  "date": "$(date +'%m/%d/%Y')"
+  "version": "1.0.0",
+  "date": "22-11-2000"
 }
