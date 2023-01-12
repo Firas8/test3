@@ -42,8 +42,8 @@ jobs:
         env:
           ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
         run: |
-          echo ::set-env name=NEXT_VERSION=::$((TEMP+1))
-      - run: echo $NEXT_VERSION'.0.0'
+          echo ::set-env name=NEXT_VERSION=::$((TEMP+1))'.0.0
+      - run: echo $NEXT_VERSION'
 
       - name: Find and Replace
         uses: jacobtomlinson/gha-find-replace@v2
@@ -52,6 +52,14 @@ jobs:
           replace: $NEXT_VERSION.0.0
           include: "package2.json"
           regex: false
+
+      - name: Find and Replace
+        uses: jacobtomlinson/gha-find-replace@v2
+        with:
+          find: ${{ env.CURRENT_VERSION }}
+          replace: ${{ env.NEXT_VERSION }}
+          regex: false
+          include: 'pom.xml'
 
 
       - run: git add .
