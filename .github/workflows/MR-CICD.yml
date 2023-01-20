@@ -36,6 +36,8 @@ jobs:
             #script: |
           #ls -l
 
+      - run: ping 34.76.116.221
+
       - name: Copy folder content recursively to remote
         uses: garygrossgarten/github-action-scp@release
         with:
