@@ -16,6 +16,7 @@ jobs:
           fetch-depth: '0'
         env:
           PAT: ${{ secrets.CI_PAT }}
+      - run: ls -l
 
       - name: Set up SSH
         run: |
@@ -35,4 +36,5 @@ jobs:
         run: npm run build --if-present
 
       - name: Deploy with rsync
-        run: rsync -avz -e "ssh -p 22" ./dist/ firas.gabsi@$34.76.116.221:/data/zento/
+        run: ls -l
+       # run: rsync -avz -e "ssh -p 22" . firas.gabsi@34.76.116.221:/data/zento/
