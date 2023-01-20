@@ -14,7 +14,7 @@ jobs:
         with:
           host: 34.76.116.221
           username: firas.gabsi
-          key: -----BEGIN OPENSSH PRIVATE KEY----- b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAAAMwAAAAtzc2gtZW QyNTUxOQAAACD5uCSWcaThbilFdaOtaBj7e25DA0zp+3hqXEcsCyMKvgAAAJjyhiD88oYg /AAAAAtzc2gtZWQyNTUxOQAAACD5uCSWcaThbilFdaOtaBj7e25DA0zp+3hqXEcsCyMKvg AAAECTwt4ZbM4iHHu38q6WPTw8DQjgDq8dYdknObRb58BEa/m4JJZxpOFuKUV1o61oGPt7 bkMDTOn7eGpcRywLIwq+AAAAFWZpcmFzLmdhYnNpQGdtYWlsLmNvbQ== -----END OPENSSH PRIVATE KEY-----
+          key: b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAAAMwAAAAtzc2gtZW QyNTUxOQAAACD5uCSWcaThbilFdaOtaBj7e25DA0zp+3hqXEcsCyMKvgAAAJjyhiD88oYg /AAAAAtzc2gtZWQyNTUxOQAAACD5uCSWcaThbilFdaOtaBj7e25DA0zp+3hqXEcsCyMKvg AAAECTwt4ZbM4iHHu38q6WPTw8DQjgDq8dYdknObRb58BEa/m4JJZxpOFuKUV1o61oGPt7 bkMDTOn7eGpcRywLIwq+AAAAFWZpcmFzLmdhYnNpQGdtYWlsLmNvbQ==
           port: 22
           script: |
             cd ~/data/zento
