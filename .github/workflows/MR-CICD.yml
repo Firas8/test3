@@ -38,22 +38,5 @@ jobs:
           SSH_PRIVATE_KEY: ${{secrets.SSH_PRIVATE_KEY}}
           SSH_KNOWN_HOSTS: ${{secrets.SSH_KNOWN_HOSTS}}
 
-          #- name: Set up SSH
-          #  run: |
-          #mkdir -p ~/.ssh/
-          #echo ${{ env.SSH_PRIVATE_KEY }} > ./deploy.key
-          #sudo chmod 600 ./deploy.key
-          #echo ${{ env.SSH_KNOWN_HOSTS }} > ~/.ssh/known_hosts
-        #shell: bash
-          #env:
-          #SSH_PRIVATE_KEY: ${{secrets.SSH_PRIVATE_KEY}}
-          #SSH_KNOWN_HOSTS: ${{secrets.SSH_KNOWN_HOSTS}}
-
-        #- name: Install NPM dependencies
-        #run: npm install
-
-        #- name: Build project
-        #run: npm run build --if-present
-
-        #- name: Deploy with rsync
-        #run: rsync -avz -e "ssh -p 22" /home/runner/work/test3/test3 firas.gabsi@34.76.116.221:/data/zento/
+      - run: cd /tmp/zento/
+      - run: npm start
