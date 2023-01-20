@@ -46,7 +46,7 @@ jobs:
           key: ${{ env.SSH_PRIVATE_KEY }}
           port: 22
           script: |
-            cd /tmp/zento/
+            cd /tmp/zento/test3
             npm install
             npm start
         env:
