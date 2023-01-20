@@ -16,15 +16,13 @@ jobs:
           fetch-depth: '0'
         env:
           PAT: ${{ secrets.CI_PAT }}
-      - run: cd ..
-      - run: pwd
 
       - name: Set up SSH
         run: |
           mkdir -p ~/.ssh/
-          echo "$SSH_PRIVATE_KEY" > ./deploy.key
+          echo ${{ env.SSH_PRIVATE_KEY }} > ./deploy.key
           sudo chmod 600 ./deploy.key
-          echo "$SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts
+          echo ${{ env.SSH_KNOWN_HOSTS }} > ~/.ssh/known_hosts
         shell: bash
         env:
           SSH_PRIVATE_KEY: ${{secrets.SSH_PRIVATE_KEY}}
