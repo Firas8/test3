@@ -16,7 +16,8 @@ jobs:
           fetch-depth: '0'
         env:
           PAT: ${{ secrets.CI_PAT }}
-      - run: ls -l
+      - run: cd ..
+      - run: pwd
 
       - name: Set up SSH
         run: |
