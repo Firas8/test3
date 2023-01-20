@@ -2,7 +2,7 @@ name: Deployment Action
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "test" ]
 
 jobs:
   Deploy:
@@ -12,9 +12,9 @@ jobs:
       - name: Deploy using ssh
         uses: appleboy/ssh-action@master
         with:
-          host: 34.76.116.221
-          username: firas.gabsi
-          key: b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAAAMwAAAAtzc2gtZWQyNTUxOQAAACD5uCSWcaThbilFdaOtaBj7e25DA0zp+3hqXEcsCyMKvgAAAJjyhiD88oYg/AAAAAtzc2gtZWQyNTUxOQAAACD5uCSWcaThbilFdaOtaBj7e25DA0zp+3hqXEcsCyMKvgAAAECTwt4ZbM4iHHu38q6WPTw8DQjgDq8dYdknObRb58BEa/m4JJZxpOFuKUV1o61oGPt7bkMDTOn7eGpcRywLIwq+AAAAFWZpcmFzLmdhYnNpQGdtYWlsLmNvbQ==
+          host: '34.76.116.221'
+          username: 'firas.gabsi'
+          key: 'b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAAAMwAAAAtzc2gtZWQyNTUxOQAAACD5uCSWcaThbilFdaOtaBj7e25DA0zp+3hqXEcsCyMKvgAAAJjyhiD88oYg/AAAAAtzc2gtZWQyNTUxOQAAACD5uCSWcaThbilFdaOtaBj7e25DA0zp+3hqXEcsCyMKvgAAAECTwt4ZbM4iHHu38q6WPTw8DQjgDq8dYdknObRb58BEa/m4JJZxpOFuKUV1o61oGPt7bkMDTOn7eGpcRywLIwq+AAAAFWZpcmFzLmdhYnNpQGdtYWlsLmNvbQ=='
           port: 22
           script: |
             cd ~/data/zento
