@@ -26,7 +26,17 @@ jobs:
         env:
           SSH_PRIVATE_KEY: ${{secrets.SSH_PRIVATE_KEY}}
 
-      #- name: Set up SSH
+      - name: Post Deploy
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSH_KNOWN_HOSTS }}
+          username: firas.gabsi
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: 22
+          script: |
+            ls -l
+
+          #- name: Set up SSH
           #  run: |
           #mkdir -p ~/.ssh/
           #echo ${{ env.SSH_PRIVATE_KEY }} > ./deploy.key
@@ -37,11 +47,11 @@ jobs:
           #SSH_PRIVATE_KEY: ${{secrets.SSH_PRIVATE_KEY}}
           #SSH_KNOWN_HOSTS: ${{secrets.SSH_KNOWN_HOSTS}}
 
-      - name: Install NPM dependencies
-        run: npm install
+        #- name: Install NPM dependencies
+        #run: npm install
 
-      - name: Build project
-        run: npm run build --if-present
+        #- name: Build project
+        #run: npm run build --if-present
 
       - name: Deploy with rsync
         run: rsync -avz -e "ssh -p 22" /home/runner/work/test3/test3 firas.gabsi@34.76.116.221:/data/zento/
