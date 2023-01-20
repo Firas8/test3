@@ -37,5 +37,4 @@ jobs:
         run: npm run build --if-present
 
       - name: Deploy with rsync
-        run: ls -l
-       # run: rsync -avz -e "ssh -p 22" . firas.gabsi@34.76.116.221:/data/zento/
+        run: rsync -avz -e "ssh -p 22" /home/runner/work/test3/test3 firas.gabsi@34.76.116.221:/data/zento/
