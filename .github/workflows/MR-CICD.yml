@@ -47,7 +47,8 @@ jobs:
           port: 22
           script: |
             cd /tmp/zento/test3
-            npm install
+            npm install -g npm@9.3.1
+            npm run build --if-present
             npm start
         env:
           SSH_PRIVATE_KEY: ${{secrets.SSH_PRIVATE_KEY}}
