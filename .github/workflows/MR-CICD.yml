@@ -38,5 +38,17 @@ jobs:
           SSH_PRIVATE_KEY: ${{secrets.SSH_PRIVATE_KEY}}
           SSH_KNOWN_HOSTS: ${{secrets.SSH_KNOWN_HOSTS}}
 
-      - run: cd /tmp/zento/
-      - run: npm start
+      - name: executing remote ssh commands using password
+        uses: appleboy/ssh-action@v0.1.7
+        with:
+          host: 34.76.116.221
+          username: firas.gabsi
+          proxy_key: ${{ env.SSH_PRIVATE_KEY }}
+          port: 22
+          script: pwd
+        env:
+          SSH_PRIVATE_KEY: ${{secrets.SSH_PRIVATE_KEY}}
+          SSH_KNOWN_HOSTS: ${{secrets.SSH_KNOWN_HOSTS}}
+
+      #- run: cd /tmp/zento/
+      #- run: npm start
