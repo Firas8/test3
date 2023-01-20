@@ -26,23 +26,11 @@ jobs:
         env:
           SSH_PRIVATE_KEY: ${{secrets.SSH_PRIVATE_KEY}}
 
-        #- name: Post Deploy
-        #uses: appleboy/ssh-action@master
-          #with:
-          #host: ${{ secrets.SSH_KNOWN_HOSTS }}
-          #username: firas.gabsi
-          #key: ${{ secrets.SSH_PRIVATE_KEY }}
-          #port: 22
-            #script: |
-          #ls -l
-
-      - run: ping 34.76.116.221 -c 2
-
       - name: Copy folder content recursively to remote
         uses: garygrossgarten/github-action-scp@release
         with:
           local: /home/runner/work/test3/
-          remote: /data/zento/
+          remote: /tmp/zento/
           host: 34.76.116.221
           username: firas.gabsi
           privateKey: ${{ env.SSH_PRIVATE_KEY }}
