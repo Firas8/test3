@@ -26,17 +26,17 @@ jobs:
         env:
           SSH_PRIVATE_KEY: ${{secrets.SSH_PRIVATE_KEY}}
 
-        #- name: Copy folder content recursively to remote
-        #uses: garygrossgarten/github-action-scp@release
-          #with:
-          #local: /home/runner/work/test3/
-          #remote: /tmp/zento/
-          #host: 34.76.116.221
-          #username: firas.gabsi
-          #privateKey: ${{ env.SSH_PRIVATE_KEY }}
-          #env:
-          #SSH_PRIVATE_KEY: ${{secrets.SSH_PRIVATE_KEY}}
-          #SSH_KNOWN_HOSTS: ${{secrets.SSH_KNOWN_HOSTS}}
+      - name: Copy folder content recursively to remote
+        uses: garygrossgarten/github-action-scp@release
+        with:
+          local: /home/runner/work/test3/
+          remote: /tmp/zento/
+          host: 34.76.116.221
+          username: firas.gabsi
+          privateKey: ${{ env.SSH_PRIVATE_KEY }}
+        env:
+          SSH_PRIVATE_KEY: ${{secrets.SSH_PRIVATE_KEY}}
+          SSH_KNOWN_HOSTS: ${{secrets.SSH_KNOWN_HOSTS}}
 
       - name: executing remote ssh commands using password
         uses: appleboy/ssh-action@v0.1.7
@@ -45,7 +45,9 @@ jobs:
           username: firas.gabsi
           key: ${{ env.SSH_PRIVATE_KEY }}
           port: 22
-          script: pwd
+          script: |
+            cd /tmp/zento/
+            npm start
         env:
           SSH_PRIVATE_KEY: ${{secrets.SSH_PRIVATE_KEY}}
           SSH_KNOWN_HOSTS: ${{secrets.SSH_KNOWN_HOSTS}}
