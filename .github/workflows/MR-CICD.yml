@@ -26,6 +26,17 @@ jobs:
         env:
           SSH_PRIVATE_KEY: ${{secrets.SSH_PRIVATE_KEY}}
 
+      - name: Remove old folder
+        uses: appleboy/ssh-action@v0.1.7
+        with:
+          host: 34.76.116.221
+          username: firas.gabsi
+          key: ${{ env.SSH_PRIVATE_KEY }}
+          port: 22
+          script: |
+            sudo su -
+            rm -r /tmp/zento/test3
+
       - name: Copy folder content recursively to remote
         uses: garygrossgarten/github-action-scp@release
         with:
@@ -38,17 +49,19 @@ jobs:
           SSH_PRIVATE_KEY: ${{secrets.SSH_PRIVATE_KEY}}
           SSH_KNOWN_HOSTS: ${{secrets.SSH_KNOWN_HOSTS}}
 
-      #- name: executing remote ssh commands using password
-        #uses: appleboy/ssh-action@v0.1.7
-          #with:
-          #host: 34.76.116.221
-          #username: firas.gabsi
-          #key: ${{ env.SSH_PRIVATE_KEY }}
-          #port: 22
-            #script: |
-            #sudo su -
-            #cd /data/zento
-          #./biossunRunner.sh
-          #env:
-          #SSH_PRIVATE_KEY: ${{secrets.SSH_PRIVATE_KEY}}
-          #SSH_KNOWN_HOSTS: ${{secrets.SSH_KNOWN_HOSTS}}
+      - name: executing remote ssh commands using password
+        uses: appleboy/ssh-action@v0.1.7
+        with:
+          host: 34.76.116.221
+          username: firas.gabsi
+          key: ${{ env.SSH_PRIVATE_KEY }}
+          port: 22
+          script: |
+            sudo su -
+            cd /data/zento
+            ./biossunRunner.sh
+            cd /tmp/zento/test3
+            npm start &
+        env:
+          SSH_PRIVATE_KEY: ${{secrets.SSH_PRIVATE_KEY}}
+          SSH_KNOWN_HOSTS: ${{secrets.SSH_KNOWN_HOSTS}}
