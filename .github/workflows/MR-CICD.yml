@@ -48,9 +48,7 @@ jobs:
           script: |
             sudo su -
             cd /data/zento
-            ./biossunRunner.sh
-            cd /tmp/zento/test3
-            npm start &
+            ./biossunRunner.sh &>/dev/null &
         env:
           SSH_PRIVATE_KEY: ${{secrets.SSH_PRIVATE_KEY}}
           SSH_KNOWN_HOSTS: ${{secrets.SSH_KNOWN_HOSTS}}
