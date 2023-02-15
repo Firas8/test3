@@ -17,12 +17,14 @@ jobs:
         env:
           PAT: ${{ secrets.CI_PAT }}
 
-      - uses: actions/setup-node@v1
+      - name: Use Node.js
+        uses: actions/setup-node@v3
         with:
-          node-version: 12.x
+          node-version: '14.x'
 
       #- run: npm install --build-from-resource
-      - run: npm install -g npx --force
+      - run: which npx
+      - run: npm install --force -g npx
 
       - uses: amondnet/vercel-action@v20
         with:
