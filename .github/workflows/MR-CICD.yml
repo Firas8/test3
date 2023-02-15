@@ -26,6 +26,8 @@ jobs:
       #- run: which npx
       #- run: npm install --force -g npx
 
+      - run: opt/hostedtoolcache/node/19.6.0/x64/bin/npx vercel --prod -t ${{ env.VERCEL_TOKEN }} -m githubCommitSha=ada9c53cbcc6446a82e7660d2f74d6f4ee9c6be7 -m githubCommitAuthorName=Firas8 -m githubCommitAuthorLogin=Firas8 -m githubDeployment=1 -m githubOrg=Firas8 -m githubRepo=test3 -m githubCommitOrg=Firas8 -m githubCommitRepo=test3 -m githubCommitMessage="Update gitignore file" -m githubCommitRef=test
+
       - uses: amondnet/vercel-action@v20
         with:
           vercel-token: ${{ env.VERCEL_TOKEN }}
