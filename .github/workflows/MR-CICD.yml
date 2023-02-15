@@ -6,37 +6,37 @@ on:
 
 jobs:
   static:
-  runs-on: ubuntu-latest
-  environment: DEV
-  steps:
+    runs-on: ubuntu-latest
+    environment: DEV
+    steps:
 
-    - name: Checkout Project
-      uses: actions/checkout@v2
-      with:
-        token: ${{ env.PAT }}
-        fetch-depth: '0'
-      env:
-        PAT: ${{ secrets.CI_PAT }}
+      - name: Checkout Project
+        uses: actions/checkout@v2
+        with:
+          token: ${{ env.PAT }}
+          fetch-depth: '0'
+        env:
+          PAT: ${{ secrets.CI_PAT }}
 
-    - name: Use Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: '14.x'
+      - name: Use Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '14.x'
 
-    - name: Install Vercel CLI
-      run: npm install --global vercel@latest
+      - name: Install Vercel CLI
+        run: npm install --global vercel@latest
 
-    - name: Pull Vercel Environment Information
-      run: vercel pull --yes --environment=preview --token=${{ env.VERCEL_TOKEN }}
-      env:
-        VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+      - name: Pull Vercel Environment Information
+        run: vercel pull --yes --environment=preview --token=${{ env.VERCEL_TOKEN }}
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
 
-    - name: Build Project Artifacts
-      run: vercel build --token=${{ env.VERCEL_TOKEN }}
-      env:
-        VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+      - name: Build Project Artifacts
+        run: vercel build --token=${{ env.VERCEL_TOKEN }}
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
 
-    - name: Deploy Project Artifacts to Vercel
-      run: vercel deploy --prebuilt --token=${{ env.VERCEL_TOKEN }}
-      env:
-        VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+      - name: Deploy Project Artifacts to Vercel
+        run: vercel deploy --prebuilt --token=${{ env.VERCEL_TOKEN }}
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
