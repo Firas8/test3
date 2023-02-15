@@ -26,6 +26,11 @@ jobs:
       #- run: which npx
       #- run: npm install --force -g npx
 
+      - name: build
+        run: |
+          npm ci
+          npx ng build --prod
+
       - uses: amondnet/vercel-action@v25.1.1
         with:
           vercel-token: ${{ env.VERCEL_TOKEN }}
