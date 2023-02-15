@@ -22,7 +22,8 @@ jobs:
         with:
           node-version: '14.x'
 
-      - run: npm install --build-from-resource
+      #- run: npm install --build-from-resource
+      - run: npm install -g npx
 
       - uses: amondnet/vercel-action@v20
         with:
