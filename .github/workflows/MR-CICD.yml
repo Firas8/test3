@@ -23,7 +23,7 @@ jobs:
           node-version: '19.x'
 
       #- run: npm install --build-from-resource
-      #- run: which npx
+      - run: which npx
       #- run: npm install --force -g npx
 
       - name: Install NPM dependencies
