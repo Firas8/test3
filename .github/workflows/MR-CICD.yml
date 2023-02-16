@@ -24,7 +24,7 @@ jobs:
           vercel-args: '--prod'
           vercel-org-id: 'vercel.com/biossun/biossun-vercel'
           vercel-project-id: 'prj_VDyf3RdekkEGcg7bvsSOpM5Qyl7Q'
-          scope: 'vercel.com/biossun/biossun-vercel'
+          #scope: 'vercel.com/biossun/biossun-vercel'
         env:
           PAT: ${{ secrets.CI_PAT }}
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
