@@ -25,6 +25,7 @@ jobs:
       #- run: npm install --build-from-resource
       #- run: which npx
       #- run: npm install --force -g npx
+      - run: rm -rf .git/hooks
 
       - name: Install NPM dependencies
         run: npm install
