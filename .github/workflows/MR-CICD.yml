@@ -27,9 +27,6 @@ jobs:
       - name: Install NPM dependencies
         run: npm install
 
-      - name: Build project
-        run: /opt/hostedtoolcache/node/19.6.0/x64/bin/npx ng build --prod
-
       - uses: amondnet/vercel-action@v25.1.1
         with:
           vercel-token: ${{ env.VERCEL_TOKEN }}
