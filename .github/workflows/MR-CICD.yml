@@ -23,14 +23,14 @@ jobs:
           node-version: '19.x'
 
       #- run: npm install --build-from-resource
-      - run: which npx
+      #- run: which npx
       #- run: npm install --force -g npx
 
       - name: Install NPM dependencies
         run: npm install
 
       - name: Build project
-        run: npx ng build --prod
+        run: /opt/hostedtoolcache/node/19.6.0/x64/bin/npx ng build --prod
 
       - uses: amondnet/vercel-action@v25.1.1
         with:
