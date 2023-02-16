@@ -22,8 +22,6 @@ jobs:
         with:
           node-version: '19.x'
 
-      - run: rm -rf .git/hooks
-
       - name: Install NPM dependencies
         run: npm install
 
@@ -34,7 +32,7 @@ jobs:
           vercel-args: '--prod'
           vercel-org-id: ${{ secrets.VERCEL_ORG_ID}}
           vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID}}
-          scope: ${{ secrets.VERCEL_ORG_ID}}
+          #scope: ${{ secrets.VERCEL_ORG_ID}}
         env:
           PAT: ${{ secrets.CI_PAT }}
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
